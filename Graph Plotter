@@ -1,0 +1,49 @@
+import matplotlib.pyplot as plt
+import time
+import random
+from collections import deque
+import numpy as np
+import datetime
+
+# simulates input from serial port
+def random_gen():
+    while True:
+        val = random.randint(1,100)
+        yield val
+        time.sleep(0.1)
+
+
+
+a1 = deque([0]*100)
+ax = plt.axes(xlim=(0, 20), ylim=(0, 100))
+d = random_gen()
+
+line, = plt.plot(a1,linewidth=4)
+plt.ion()
+plt.ylim([0,100])
+plt.show()
+
+def runGraph(i):
+    a1.appendleft(next(d))
+    datatoplot = a1.pop()
+    line.set_ydata(a1)
+    plt.draw()
+    plt.xlabel("Time Passed (Seconds)")
+    plt.ylabel("Water Level (Meters)")
+    plt.title("Dynamic Real Time Water Detection Disaster Preventer")
+    t = datetime.datetime.now().time()
+    file.write(str(t) + ":\t" + str(a1[0])+"m\n")
+    i += 1
+    time.sleep(0.01)
+    plt.pause(0.000001)                
+
+file = open("results.txt", "w")
+
+i = 0
+
+while True:
+    runGraph(i)
+    i+=1
+    
+
+file.close()
