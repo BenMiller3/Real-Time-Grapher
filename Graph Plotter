@@ -13,7 +13,7 @@ def random_gen():
         time.sleep(0.1)
 
 
-
+# matplot lib graphing
 a1 = deque([0]*100)
 ax = plt.axes(xlim=(0, 20), ylim=(0, 100))
 d = random_gen()
@@ -31,16 +31,19 @@ def runGraph(i):
     plt.xlabel("Time Passed (Seconds)")
     plt.ylabel("Water Level (Meters)")
     plt.title("Dynamic Real Time Water Detection Disaster Preventer")
+    # put a time stamp on all entries
     t = datetime.datetime.now().time()
     file.write(str(t) + ":\t" + str(a1[0])+"m\n")
     i += 1
     time.sleep(0.01)
     plt.pause(0.000001)                
 
+# write the results to a text file 
 file = open("results.txt", "w")
 
 i = 0
 
+#run forever until the program is manually halted
 while True:
     runGraph(i)
     i+=1
