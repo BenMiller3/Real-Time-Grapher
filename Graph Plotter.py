@@ -48,5 +48,5 @@ while True:
     runGraph(i)
     i+=1
     
-
+# close file and end program
 file.close()
