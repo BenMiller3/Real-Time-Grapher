@@ -1,3 +1,4 @@
+# imports matplotlib to graph
 import matplotlib.pyplot as plt
 import time
 import random
@@ -18,6 +19,7 @@ a1 = deque([0]*100)
 ax = plt.axes(xlim=(0, 20), ylim=(0, 100))
 d = random_gen()
 
+# sets line attributes
 line, = plt.plot(a1,linewidth=4)
 plt.ion()
 plt.ylim([0,100])
@@ -33,6 +35,7 @@ def runGraph(i):
     plt.title("Dynamic Real Time Water Detection Disaster Preventer")
     # put a time stamp on all entries
     t = datetime.datetime.now().time()
+    # writes entry plus a time stamp to the desired file
     file.write(str(t) + ":\t" + str(a1[0])+"m\n")
     i += 1
     time.sleep(0.01)
